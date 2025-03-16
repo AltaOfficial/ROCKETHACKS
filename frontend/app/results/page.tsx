@@ -3,9 +3,11 @@
 import { CheckCircle2, XCircle, ChevronDown, ChevronUp } from "lucide-react";
 import * as Progress from "@radix-ui/react-progress";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 export default function ResultsPage() {
-  const score = 86;
+  const searchParams = useSearchParams();
+  const score = parseInt(searchParams.get("score")!);
   const feedback = [
     {
       status: "success",
@@ -50,6 +52,9 @@ export default function ResultsPage() {
             <div className="relative w-48 h-48 mx-auto">
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-6xl font-bold">{score}</span>
+              </div>
+              <div className="place-items-center z-10">
+                <p className="text-black text-2xl">{score}</p>
               </div>
               <Progress.Root
                 className="relative overflow-hidden bg-gray-200 rounded-full w-48 h-48"
